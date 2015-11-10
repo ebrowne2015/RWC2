@@ -3,6 +3,7 @@ package com.example.eoinbrowne.rwc2;
 import android.app.Activity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class ButtonListener implements View.OnClickListener {
     }
 
 
+    // Switch statement for the Buttons
     @Override
     public void onClick(View v) {
 
@@ -92,11 +94,30 @@ public class ButtonListener implements View.OnClickListener {
                 w1.setText(TheFinal.get(0).getTeamName());
                 w1.setTextColor(TheFinal.get(0).getTeamColor());
 
+
+                ArrayList<String> rawStringfromSemiLuckyDip = new ArrayList<String>();
+                ArrayList<String> rawStringfromFinalLuckyDip = new ArrayList<String>();
+
+                rawStringfromSemiLuckyDip.add(s1.getText().toString());
+                rawStringfromSemiLuckyDip.add(s2.getText().toString());
+                rawStringfromSemiLuckyDip.add(s3.getText().toString());
+                rawStringfromSemiLuckyDip.add(s4.getText().toString());
+
+                rawStringfromFinalLuckyDip.add(f1.getText().toString());
+                rawStringfromFinalLuckyDip.add(f2.getText().toString());
+
+                String Str = Controller.get_Instance().checkForduplication(rawStringfromSemiLuckyDip);
+                String Str1 = Controller.get_Instance().checkForduplication(rawStringfromFinalLuckyDip);
+
+                Toast.makeText(this.activity, Str, Toast.LENGTH_LONG).show();
+                Toast.makeText(this.activity, Str1, Toast.LENGTH_LONG).show();
+
+
                 break;
 
             case R.id.ResetButton:
 
-                //clear all fields
+                //clear all fields of the reset button
                 EditText cf1 = (EditText) this.activity.findViewById(R.id.Semi1);
                 EditText cf2 = (EditText) this.activity.findViewById(R.id.Semi2);
                 EditText cf3 = (EditText) this.activity.findViewById(R.id.Semi3);
